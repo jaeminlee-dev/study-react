@@ -14,11 +14,11 @@
 
 <script type="text/babel">
     const root = document.getElementById('root');
-    const title = <h3 id="title" onMouseEnter={() => console.log('hihi')}>
+    const Title = () => <h3 id="title" onMouseEnter={() => console.log('hihi')}>
         hello im title
     </h3>
 
-    const button = <button
+    const Button = () =><button
         style=
         {{
             backgoundColor: 'tomato'
@@ -38,8 +38,8 @@
         }
     }, 'Click me');
     */
-    const container = React.createElement('div', null, [title, button]);
-    ReactDOM.render(container, root);
+    const Container = ()=><h3><Title/><Button/></h3>
+    ReactDOM.render(<Container/>, root);
     
 </script>
 
