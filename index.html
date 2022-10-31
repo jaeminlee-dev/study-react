@@ -15,7 +15,7 @@
 <script type="text/babel">
     const root = document.getElementById('root');
     function render(){
-        React.render(Container, root)
+        ReactDOM.render(<Container/>, root)
     }
     function Container(){
         const [counter, setCounter] = React.useState(0);
@@ -23,7 +23,7 @@
             setCounter(counter + 1);
         }
         return <div>
-    <h3>Total Clicked : counter</h3>
+    <h3>Total Clicked : {counter}</h3>
     <button onClick={onClick}>Click me</button>
     </div>
 
