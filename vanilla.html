@@ -9,8 +9,25 @@
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <!--react dom - 라이브러리이자 플러그인인데 모든 React Element를 HTML body에 둘 수 있도록 해줌  -->
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script>
+<!--babel를 이용해서 jsx문법을 html이 읽을 수 있도록 변환 -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
     const root = document.getElementById('root');
+    const title = <h3 id="title" onMouseEnter={() => console.log('hihi')}>
+        hello im title
+    </h3>
+
+    const button = <button
+        style=
+        {{
+            backgoundColor: 'tomato'
+        }}
+        onClick={
+            () => console.log('hihii')
+        }
+    >Click me</button>
+    /**
     const h3 = React.createElement('h3', null, 'Total clicks : 0');
     let cnt = 0;
     const btn = React.createElement('button', {
@@ -20,9 +37,10 @@
             ReactDOM.render(container, root)
         }
     }, 'Click me');
-    const container = React.createElement('div', null, [h3, btn]);
-
+    */
+    const container = React.createElement('div', null, [title, button]);
     ReactDOM.render(container, root);
+    
 </script>
 
 </html>
