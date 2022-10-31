@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<!--react 라이브러리 - 애플리케이션을 인터렉티브하게 만들어주기 위해 가져옴  -->
+<!-- script 문법으로 주소를 통해서 가져왔는데 React Element를 사용할 수 있음-->
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<!--react dom - 라이브러리이자 플러그인인데 모든 React Element를 HTML body에 둘 수 있도록 해줌  -->
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+    const span = React.createElement('span', { id: "hihi", style: { color: "red" } }, 'Total clicks : 0');
+    const root = document.getElementById('root');
+    ReactDOM.render(span, root);
+</script>
+
+</html>
