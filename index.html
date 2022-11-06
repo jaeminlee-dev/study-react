@@ -14,39 +14,30 @@
 
 <script type="text/babel">
     const root = document.getElementById('root');
-    function render(){
-        ReactDOM.render(<Container/>, root)
+    function Btn(props){
+        return <button 
+        style={{
+            backgroundColor: 'blue',
+            color: 'white',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            border: 'none',
+            fontSize: '20px',
+            fontWeight: 'bold'
+        }}>{props.title}</button>;
     }
-    function Container(){
-        const [amount, setAmount] = React.useState(0);
-        const [flipped, setFlipped] = React.useState(false);
-        const onChange = (event) => {
-            setAmount((current) => event.target.value);
-        }
-        const reset = () => {
-            setAmount(0);
-        }
-        const onFlip = () => {
-            reset();
-            setFlipped((current) => !current);
-        }
+
+    function App(){
+        
         return (
             <div>
-                <h1> Super Converter</h1>
-                <div><label htmlFor="Minutes">Minutes</label>
-                <input value={flipped ?
-                    amount * 60 :amount} id="Minutes" placeholder="Minutes" type="Number" onChange={onChange} disabled={flipped}/></div>
-                <div><label htmlFor="Hours">Hours</label>
-                <input value={
-                    flipped ?
-                    amount : Math.round(amount / 60)} id="Hours" placeholder="Hours" type="Number" onChange={onChange} disabled={!flipped}/></div>
-                <button onClick={reset}>Reset</button>
-                <button onClick={onFlip}>Flipped {flipped}</button>
+              <Btn title="Save Change"/>
+              <Btn title="Continue"/>
             </div>
         );
     } 
     
-    render();
+    ReactDOM.render(<App/>, root)
 
 </script>
 
