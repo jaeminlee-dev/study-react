@@ -6,9 +6,9 @@
 </body>
 <!--react 라이브러리 - 애플리케이션을 인터렉티브하게 만들어주기 위해 가져옴  -->
 <!-- script 문법으로 주소를 통해서 가져왔는데 React Element를 사용할 수 있음-->
-<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
 <!--react dom - 라이브러리이자 플러그인인데 모든 React Element를 HTML body에 둘 수 있도록 해줌  -->
-<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
 <!--babel를 이용해서 jsx문법을 html이 읽을 수 있도록 변환 -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
@@ -18,15 +18,21 @@
         ReactDOM.render(<Container/>, root)
     }
     function Container(){
-        const [counter, setCounter] = React.useState(0);
-        const onClick = () => {
-            setCounter(counter + 1);
+        const [minutes, setMinutes] = React.useState(0);
+        const [hours, setHours] = React.useState();
+        const onChange = (event) => {
+            setMinutes((current) => event.target.value);
         }
-        return <div>
-    <h3>Total Clicked : {counter}</h3>
-    <button onClick={onClick}>Click me</button>
-    </div>
-
+        return (
+            <div>
+                <h1> Super Converter</h1>
+                <label htmlFor="Minutes">Minutes</label>
+                <input value={minutes} id="Minutes" placeholder="Minutes" type="Number" onChange={onChange}/>
+                <h4>You want to convert : {minutes}</h4>
+                <label htmlFor="Hours">Hours</label>
+                <input value={hours} id="Hours" placeholder="Hours" type="Number"/>
+            </div>
+        );
     } 
     
     render();
