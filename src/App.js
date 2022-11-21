@@ -17,7 +17,7 @@ function App() {
       <h1>{counter}</h1>
       <Button onClick={onClick} text={"click me"} />
     </div>
-  );
+  ); 
 }
  
 export default App;
