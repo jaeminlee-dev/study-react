@@ -1,16 +1,20 @@
 import Button from "./Button";
-import styles from "./App.module.css";
 import {useState, useEffect} from "react";
 
 function App() {
   const [counter, setValue] = useState(0);
+  const [keyword, setKeyword] = useState("");
   const onClick = () => setValue((prev) => prev + 1);
-  console.log("i run every time");
-  const iRunOnlyOnce = () => console.log("I run only once");
-  useEffect(iRunOnlyOnce, [])
+  const onChange = (e) => setKeyword(e.target.value);
+  useEffect(()=>{
+    if(keyword.length > 5) {
+      console.log(keyword);
+    }
+  }, [keyword]);
   return (
     <div>
-      <h1 className={styles.title}>{counter}</h1>
+      <input value={keyword} onChange={onChange} type={"text"} placeholder="search here.."/>
+      <h1>{counter}</h1>
       <Button onClick={onClick} text={"click me"} />
     </div>
   );
