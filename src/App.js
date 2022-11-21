@@ -1,34 +1,41 @@
 import { useState, useEffect } from "react";
 
-function App() {
-  const [toDo, setToDo] = useState("");
-  const [toDos, setToDos] = useState([]);
-  const onChange = (event) => setToDo(event.target.value);
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (toDo === "") {
-      return;
-    }
-    setToDo("");
-    setToDos((currentArray) => [...currentArray, toDo]);
-  };
+import Movie from "./Movie";
 
+function App() {
+  const [isLoaded, setLoading] = useState(false);
+
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const json = await (
+      await fetch(
+        "https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year"
+      )
+    ).json();
+    setMovies(json.data.movies);
+    setLoading(true);
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
+  console.log(movies);
   return (
     <div>
-      <h1>ToDo List length {toDos.length}</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          onChange={onChange}
-          value={toDo}
-          type={"text"}
-          placeholder="Write your to"
-        ></input>
-        <button>Add To Do</button>
-      </form>
-      <hr />
-      {toDos.map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
+      {isLoaded ? (
+        <div>
+          {movies.map((movie) => (
+            <Movie
+              key={movie.id}
+              coverImg={movie.medium_cover_image}
+              title={movie.title}
+              summary={movie.summary}
+              genres={movie.genres}
+            />
+          ))}
+        </div>
+      ) : (
+        <h1>Loading</h1>
+      )}
     </div>
   );
 }
