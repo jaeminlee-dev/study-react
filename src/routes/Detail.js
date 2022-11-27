@@ -12,8 +12,8 @@ function Detail(){
     };
     useEffect(() => {
         getMovie();
-    }, []);
-    
+    },);
+
 
     return <h1>{id}</h1>
 
